@@ -7,8 +7,14 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+const authApi = require('./middleware/authApi')
 
 var app = express();
+
+var jwt = require('jsonwebtoken');
+var token = jwt.sign({ email: 'shoutime@live.com' }, 'secretcode');
+console.log(token);
+
 var mongoose = require('mongoose');
 
 // database is called music_station
@@ -32,8 +38,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/api*', authApi)
 app.use('/', index);
 app.use('/users', users);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
