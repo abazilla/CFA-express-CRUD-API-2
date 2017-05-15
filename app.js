@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var dotEnv = require('dotenv').config()
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -18,7 +19,7 @@ console.log(token);
 var mongoose = require('mongoose');
 
 // database is called music_station
-mongoose.connect('mongodb://localhost/musicStation');
+mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@ds143071.mlab.com:43071/music-nation`);
 const { connection: db } = mongoose;
 
 db.on('error', console.error.bind(console, 'connection error:'));

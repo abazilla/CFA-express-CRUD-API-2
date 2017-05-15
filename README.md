@@ -32,7 +32,6 @@ GET - '/api/:id' - Get a single song from the database.
 POST - '/api/:id/edit' - Edit an existsing song using the parameters `id` and adding in new values for each key, and redirect you to the single song.
 DELETE - '/api/:id/delete' - Destroy an existing song using the parameters `id`, and redirect you to back to the full list.
 
-
 ## About
 
 node
@@ -52,5 +51,5 @@ How forms is different to API
 Forms - Data in forms are sent in the req via the attribute `req.body`, so that is used to set the data of the new object in the database. (req.body)
 API - Data via an API can be sent in the client request via the `req.params` (if the routes are set as /:id), and through the queries `req.query`.
 
-Middleware - This code that is executed before data is routed, which is often used for things such as authentication/validation.
+Middleware - This code that is executed before data is routed (run code after the req, but before the response actually happens), which is often used for things such as authentication/validation. All app.use is global middleware, since it happens on every single request.
 apiAuth - This is where this programs authentication happens. It forces all API connections to go through this middleware which decrypts the `key` provided, and checks that the decrypted data matches with the data set previously in the program. In order to successfully validate in this program, you will just have to send through a query `key` that is valid, which will allow you to use the API.
