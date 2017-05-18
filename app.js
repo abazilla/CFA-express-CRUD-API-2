@@ -19,7 +19,7 @@ console.log(token);
 var mongoose = require('mongoose');
 
 // database is called music_station
-mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@ds143071.mlab.com:43071/music-nation`);
+mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@ds143131.mlab.com:43131/foodinary`);
 const { connection: db } = mongoose;
 
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -39,7 +39,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api*', authApi)
+// app.use('/api*', authApi)
 app.use('/', index);
 app.use('/users', users);
 
